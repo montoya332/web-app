@@ -1,0 +1,33 @@
+env:
+  amd: true
+  browser: true
+  es6: true
+  jquery: true
+  node: true
+
+parser: babel-eslint
+extends: [airbnb]
+plugins: [react]
+
+rules:
+  #Possible Errors
+  comma-dangle: [error, never] # disallow or enforce trailing commas
+  object-curly-spacing: [error, never, { objectsInObjects: true }] #This rule enforce consistent spacing inside braces of object literals, destructuring assignments, and import/export specifiers.
+  
+  # Best Practices
+  # These are rules designed to prevent you from making mistakes.
+
+  # Strict Mode
+  # These rules relate to using strict mode.
+
+  # Stylistic Issues
+  # These rules are purely matters of style and are quite subjective.
+  import/no-unresolved: 0
+  import/extensions: 0
+  import/no-extraneous-dependencies: 0
+
+  # eslint-plugin-react
+  # React specific linting rules for ESLint
+  react/jsx-filename-extension: 0
+  react/self-closing-comp: [error, { html: false }]
+  react/jsx-one-expression-per-line: 0
