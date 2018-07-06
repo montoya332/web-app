@@ -1,5 +1,6 @@
 const {gql} = require('apollo-server');
 const users = require('./stubData/users.js');
+const {find, filter} = require('lodash');
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
@@ -49,15 +50,18 @@ const typeDefs = gql`
   # (A "Mutation" type will be covered later on.)
   type Query {
     users: [User]
+    user(id:String!): User
   }
 `;
 
+const usersList = users(50);
 
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve users from the "users" array above.
 const resolvers = {
   Query: {
-    users: () => users(100)
+    users: (root, args, context, info) => { console.log(root, args, context, info); return usersList; },
+    user: (root, args) => find(usersList, x => args.id === x.id)
   }
 };
 

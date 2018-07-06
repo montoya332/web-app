@@ -23,8 +23,8 @@ const users = (count = 5) => _.times(count, i => ({
   },
   email: `arturo-${i}.montoya@example.com`,
   dob: {
-    date: '1955-06-06T04:42:27Z',
-    age: 63
+    date: `${1955 + i}-06-06T04:42:27Z`,
+    age: 63 - i
   },
   registered: {
     date: '2003-08-01T17:04:51Z',
@@ -32,7 +32,7 @@ const users = (count = 5) => _.times(count, i => ({
   },
   phone: '(00) 3732-1718',
   cell: '(45) 0238-7243',
-  id: `6913bd78-ccd4-480a-8232-${i}`,
+  id: `id-${i}`,
   picture: {
     large: 'http://via.placeholder.com/350x150',
     medium: 'http://via.placeholder.com/350x150',
