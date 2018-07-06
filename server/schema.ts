@@ -4,25 +4,24 @@ const axios = require('axios');
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
-  # Comments in GraphQL are defined with the hash (#) symbol.
-
-  # This "User" type can be used in other type declarations.
+  # types.
   type User {
-    id: String,
-    name: String,
-    username: String,
-    email: String,
-    phone: String,
-    website: String,
+    id: String
+    name: String
+    username: String
+    email: String
+    phone: String
+    website: String
   }
   type Post {
     id: String
     title: String 
-    authorId: String!
+    userId: String!
   }
   # The "Query" type is the root of all GraphQL queries.
-  # (A "Mutation" type will be covered later on.)
   type Query {
+    posts: [Post]
+    post(id:String!): Post
     users: [User]
     user(id:String!): User
   }
@@ -34,6 +33,8 @@ const typeDefs = gql`
 const baseUrl = 'http://localhost:3000';
 const resolvers = {
   Query: {
+    posts: (root, args, context, info) => axios.get(`${baseUrl}/posts`).then(x => x.data),
+    post: (root, args) => axios.get(`${baseUrl}/posts/${args.id}`).then(x => x.data),
     users: (root, args, context, info) => axios.get(`${baseUrl}/users`).then(x => x.data),
     user: (root, args) => axios.get(`${baseUrl}/users/${args.id}`).then(x => x.data)
   }

@@ -1,16 +1,17 @@
 {
 	"posts": [
-		{ "id": 1, "title": "json-server", "authorId": "id-1" },
-		{ "id": 2, "title": "json-server 2", "authorId": "id-2" }
+		{ "id": 1, "title": "json-server", "userId": "1" },
+		{ "id": 2, "title": "json-server 2", "userId": "1" },
+		{ "id": 3, "title": "json-server", "userId": "2" }
 	],
 	"users": [
 		{
 			"id": "1",
-			"name": "Leanne Graham",
-			"username": "Bret",
-			"email": "Sincere@april.biz",
+			"name": "Arturo Montoya",
+			"username": "montoya332",
+			"email": "montoya332@live.com",
 			"phone": "1-770-736-8031 x56442",
-			"website": "hildegard.org"
+			"website": "https://montoya332.github.io/React--Projects/"
 		},
 		{
 			"id": "2",
