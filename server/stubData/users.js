@@ -1,7 +1,6 @@
 const _ = require('lodash');
 
 const users = (count = 5) => _.times(count, i => ({
-
   gender: 'male',
   name: {
     title: 'mr',
