@@ -4,8 +4,16 @@ const axios = require('axios');
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
-  # types.
+  # types & inputs
   type User {
+    id: String
+    name: String
+    username: String
+    email: String
+    phone: String
+    website: String
+  }
+  input UserInput {
     id: String
     name: String
     username: String
@@ -26,7 +34,7 @@ const typeDefs = gql`
     user(id:String!): User
   }
   type Mutation {
-    setUser(name: String,username: String,email: String,phone: String,website: String): User
+    setUser(input: UserInput): User
   }
 `;
 
@@ -42,7 +50,7 @@ const resolvers = {
     user: (root, {id}) => axios.get(`${baseUrl}/users/${id}`).then(x => x.data)
   },
   Mutation: {
-    setUser: (root, args) => axios.post(`${baseUrl}/users`, args).then(x => x.data)
+    setUser: (root, {input}) => axios.post(`${baseUrl}/users`, input).then(x => x.data)
   }
 };
 
