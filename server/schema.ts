@@ -25,6 +25,9 @@ const typeDefs = gql`
     users: [User]
     user(id:String!): User
   }
+  type Mutation {
+    setUser(name: String,username: String,email: String,phone: String,website: String): User
+  }
 `;
 
 
@@ -33,10 +36,13 @@ const typeDefs = gql`
 const baseUrl = 'http://localhost:3000';
 const resolvers = {
   Query: {
-    posts: (root, args, context, info) => axios.get(`${baseUrl}/posts`).then(x => x.data),
-    post: (root, args) => axios.get(`${baseUrl}/posts/${args.id}`).then(x => x.data),
-    users: (root, args, context, info) => axios.get(`${baseUrl}/users`).then(x => x.data),
-    user: (root, args) => axios.get(`${baseUrl}/users/${args.id}`).then(x => x.data)
+    posts: () => axios.get(`${baseUrl}/posts`).then(x => x.data),
+    post: (root, {id}) => axios.get(`${baseUrl}/posts/${id}`).then(x => x.data),
+    users: () => axios.get(`${baseUrl}/users`).then(x => x.data),
+    user: (root, {id}) => axios.get(`${baseUrl}/users/${id}`).then(x => x.data)
+  },
+  Mutation: {
+    setUser: (root, args) => axios.post(`${baseUrl}/users`, args).then(x => x.data)
   }
 };
 
