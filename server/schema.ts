@@ -12,7 +12,7 @@ const typeDefs = gql`
     email: String
     phone: String
     website: String
-    sayhello: String
+    posts: [Post]
   }
   input UserInput {
     id: String
@@ -51,8 +51,8 @@ const resolvers = {
     user: (root, {id}) => axios.get(`${baseUrl}/users/${id}`).then(x => x.data)
   },
   User: {
-    sayhello(user) {
-      return `Hi ${user.name}`;
+    posts(user) {
+      return axios.get(`${baseUrl}/users/${user.id}/posts`).then(x => x.data);
     }
   },
   Mutation: {
