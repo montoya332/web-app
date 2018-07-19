@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run json:server | npm run build:watch",
-    "json:server": "json-server --watch db.json",
-    "build:watch": "nodemon ./server.ts"
+    "json:server": "json-server --watch stubData/db.json",
+    "build:watch": "nodemon ./src/server.ts"
   },
   "keywords": [],
   "author": "",
